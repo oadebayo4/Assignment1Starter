@@ -31,11 +31,13 @@ memeOptions.addEventListener("change", e => {
 
 memeForm.addEventListener("submit", function(e) {
   e.preventDefault();
+  errorMessageDiv.innerHTML = ""
+  var textError = "The top and bottom text fields cannot be blank <br> <br>";
+
   memeTopText.innerHTML = e.srcElement[1].value;
   memeBottomText.innerHTML = e.srcElement[2].value;
   if (inputTopText.value == "" || inputBottomText.value == "") {
-    errorMessageDiv.innerHTML =
-      "The top and bottom text fields cannot be blank \n";
+    errorMessageDiv.innerHTML = textError;
   }
   if (memeOptions.value == "") {
     errorMessageDiv.innerHTML +=
@@ -44,6 +46,8 @@ memeForm.addEventListener("submit", function(e) {
 });
 
 memeForm.addEventListener("reset", function(e) {
+  errorMessageDiv.innerHTML = ""
+
   e.srcElement[1].value = memeTopText.innerHTML = "";
   e.srcElement[2].value = memeBottomText.innerHTML = "";
   memeImage.src = originalSRC;
